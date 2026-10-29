@@ -9,9 +9,9 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { colors } from "../constants/colors";
-import { fonts } from "../constants/fonts";
-import { products } from "../constants/products";
+import { colors } from "../../constants/colors";
+import { fonts } from "../../constants/fonts";
+import { products } from "../../constants/products";
 
 export default function Index() {
   return (

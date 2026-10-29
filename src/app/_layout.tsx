@@ -4,7 +4,7 @@ import { Manrope_800ExtraBold } from "@expo-google-fonts/manrope";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { colors } from "../constants/colors";
-import { fonts } from '../constants/fonts';
+import { fonts } from "../constants/fonts";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -31,7 +31,7 @@ export default function RootLayout() {
         },
       }}
     >
-      <Stack.Screen name="index" options={{ headerShown: false }} />
+<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
       <Stack.Screen
         name="product/[id]"
