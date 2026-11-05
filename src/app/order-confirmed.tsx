@@ -1,10 +1,26 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
+import * as Haptics from "expo-haptics";
 import { router, useLocalSearchParams } from "expo-router";
+import { useEffect } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from "react-native-reanimated";
 import { colors } from "../constants/colors";
 import { fonts } from "../constants/fonts";
 
 export default function OrderConfirmed() {
+  const scale = useSharedValue(0);
+  const checkStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
+  useEffect(() => {
+    scale.value = withSpring(1);
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+  }, []);
+
   const { name, product } = useLocalSearchParams<{
     name: string;
     product: string;
@@ -12,8 +28,9 @@ export default function OrderConfirmed() {
 
   return (
     <View style={styles.screen}>
-      <Ionicons name="checkmark-circle" size={110} color={colors.primary} />
-
+      <Animated.View style={checkStyle}>
+        <Ionicons name="checkmark-circle" size={110} color={colors.primary} />
+      </Animated.View>
       <Text style={styles.title}>¡Pedido listo, {name}!</Text>
 
       <Text style={styles.subtitle}>Tu {product} ya se está preparando.</Text>
